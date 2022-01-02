@@ -10,3 +10,5 @@ export default function fetchCountries(name) {
       console.log(error);
     });
 }
+
+fetchCountries('peru');
