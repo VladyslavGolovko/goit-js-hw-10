@@ -35,7 +35,7 @@ function onSearch(e) {
       }
     })
     .catch(onFetchError)
-    .finally();
+    .finally(onPageReset);
 }
 
 function renderCountryCard(country) {
