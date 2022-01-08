@@ -35,7 +35,7 @@ function onSearch(e) {
       }
     })
     .catch(onFetchError)
-    .finally(() => form.reset());
+    .finally();
 }
 
 function renderCountryCard(country) {
@@ -50,4 +50,8 @@ function renderCountriesList(countries) {
 
 function onFetchError(error) {
   error.Notfilix.Notify.failure('Oops, there is no country with that name');
+}
+
+function onPageReset() {
+  refs.countryList.innerHTML = '';
 }
