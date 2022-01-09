@@ -17,7 +17,7 @@ function onSearch(e) {
 
   const form = e.target.value;
 
-  API(form)
+  API.fetchCountries(form)
     .then(countries => {
       if (countries.length > 10) {
         Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
