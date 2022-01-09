@@ -19,7 +19,7 @@ function onSearch(e) {
 
   const searchQuery = form.elements.query.value;
 
-  API.fetchCountries(searchQuery)
+  API(searchQuery)
     .then(countries => {
       if (countries.length > 10) {
         Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
@@ -48,8 +48,8 @@ function renderCountriesList(countries) {
   refs.countryList.innerHTML = list;
 }
 
-function onFetchError(error) {
-  error.Notfilix.Notify.failure('Oops, there is no country with that name');
+function onFetchError() {
+  error.Notiflix.Notify.failure('Oops, there is no country with that name');
 }
 
 function onPageReset() {
