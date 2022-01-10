@@ -3,8 +3,8 @@ import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 import countryList from './country-list.hbs';
 import countryCard from './country-card.hbs';
-import API from './fetchCountries';
-import getRefs from './get-refs';
+import { API } from './fetchCountries';
+import { getRefs } from './get-refs';
 
 const refs = getRefs();
 
