@@ -10,7 +10,7 @@ const refs = getRefs();
 
 const DEBOUNCE_DELAY = 300;
 
-searchBox.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+refs.searchBox.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
   const searchQuery = e.target.value;
@@ -37,12 +37,12 @@ function onSearch(e) {
 
 function renderCountryCard(country) {
   const markup = countryCard(country);
-  countryInfo.innerHTML = markup;
+  refs.countryInfo.innerHTML = markup;
 }
 
 function renderCountriesList(countries) {
   const list = countryList(countries);
-  countryList.innerHTML = list;
+  refs.countryList.innerHTML = list;
 }
 
 function onFetchError() {
@@ -50,5 +50,5 @@ function onFetchError() {
 }
 
 function onPageReset() {
-  countryList.innerHTML = '';
+  refs.countryList.innerHTML = '';
 }
