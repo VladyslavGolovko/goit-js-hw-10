@@ -3,8 +3,8 @@ import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
 import countryList from '../templates/country-list.hbs';
 import countryCard from '../templates/country-card.hbs';
-import { API } from './fetchCountries';
-import { getRefs } from './get-refs';
+import API from './fetchCountries';
+import getRefs from './get-refs';
 
 const refs = getRefs();
 
@@ -12,8 +12,8 @@ const DEBOUNCE_DELAY = 300;
 
 searchBox.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
-function onSearch() {
-  const searchQuery = searchBox.value;
+function onSearch(e) {
+  const searchQuery = e.target.value;
   console.log(searchQuery);
 
   API.fetchCountries(searchQuery)
