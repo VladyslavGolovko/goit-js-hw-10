@@ -12,7 +12,7 @@ const DEBOUNCE_DELAY = 300;
 
 searchBox.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
-function onSearch(e) {
+function onSearch() {
   const searchQuery = searchBox.value;
   console.log(searchQuery);
 
