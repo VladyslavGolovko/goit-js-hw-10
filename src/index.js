@@ -14,7 +14,7 @@ refs.searchBox.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
   const searchQuery = e.target.value;
-  API(searchQuery)
+  fetchCountries(searchQuery)
     .then(countries => {
       if (countries.length > 10) {
         Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
