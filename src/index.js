@@ -1,8 +1,8 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
-import countryList from '../templates/country-list.hbs';
-import countryCard from '../templates/country-card.hbs';
+import countryList from './country-list.hbs';
+import countryCard from './country-card.hbs';
 import API from './fetchCountries';
 import getRefs from './get-refs';
 
