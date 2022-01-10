@@ -12,8 +12,8 @@ const DEBOUNCE_DELAY = 300;
 
 refs.searchBox.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
-function onSearch() {
-  const searchQuery = refs.searchBox.value.trim();
+function onSearch(e) {
+  const searchQuery = e.target.value;
 
   API.fetchCountries(searchQuery)
     .then(countries => {
