@@ -1,4 +1,4 @@
-export function getRefs() {
+function getRefs() {
   return {
     searchBox: document.querySelector('#search-box'),
     countryList: document.querySelector('.country-list'),
