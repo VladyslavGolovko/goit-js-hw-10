@@ -6,7 +6,7 @@ import { getRefs } from './js/get-refs';
 
 const DEBOUNCE_DELAY = 300;
 
-refs = getRefs();
+const refs = getRefs();
 
 refs.inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
