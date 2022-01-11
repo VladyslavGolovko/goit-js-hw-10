@@ -1,7 +1,7 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
-import { API } from './js/fetchCountries.js';
+import { API } from './js/fetchCountries';
 import { getRefs } from './js/get-refs';
 
 const DEBOUNCE_DELAY = 300;
@@ -37,7 +37,7 @@ function renderBigCard(data) {
           <p>${country.name.official}</p>
           <p>${country.capital}</p>
           <p>${country.population}</p>
-          <p>${Object.values(country.languages)}</p>
+          <p>${Object.keys(country.languages)}</p>
           <img src="${country.flags.svg}" width="500" height="300"/>
         </li>`,
     )
