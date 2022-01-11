@@ -1,5 +1,4 @@
-<ul class='country-list'>
-  {{#each this}}
-    <li>{{this.name}}</li>
-  {{/each}}
-</ul>
+<li class='list short-list'>
+  <div><img class='flag' src={{country.flags.svg}} alt='flag' /></div>
+  <p><span class={{name-official}}>{{country.name.official}}</span></p>
+</li>
