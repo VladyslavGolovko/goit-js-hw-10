@@ -10,8 +10,6 @@ const DEBOUNCE_DELAY = 300;
 
 const refs = getRefs();
 
-const DEBOUNCE_DELAY = 300;
-
 refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
