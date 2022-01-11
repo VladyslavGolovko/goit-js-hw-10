@@ -37,13 +37,12 @@ function onInput() {
 function renderBigCard(data) {
   const markUp = data
     .map(
-      country => `<li>
+      country => `
           <p>${country.name.official}</p>
           <p>${country.capital}</p>
           <p>${country.population}</p>
           <p>${Object.keys(country.languages)}</p>
-          <img src="${country.flags.svg}" width="500" height="300"/>
-        </li>`,
+          <img src="${country.flags.svg}" width="500" height="300"/>`,
     )
     .join('');
   refs.listEl.innerHTML = markUp;
@@ -52,10 +51,9 @@ function renderBigCard(data) {
 function renderSmallCard(data) {
   const markUp = data
     .map(
-      country => `<li>
+      country => `
         <p>${country.name.official}</p>
-        <img src="${country.flags.svg}" width="150" height="100"/>
-      </li>`,
+        <img src="${country.flags.svg}" width="150" height="100"/>`,
     )
     .join('');
   refs.listEl.innerHTML = markUp;
