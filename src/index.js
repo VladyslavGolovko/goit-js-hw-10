@@ -21,8 +21,8 @@ function onSearch(e) {
     .finally(onPageReset);
 }
 
-function onSelectionCountries(data) {
-  if (data.length > 10) {
+function onSelectionCountries(countries) {
+  if (countries.length > 10) {
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
     return;
   }
