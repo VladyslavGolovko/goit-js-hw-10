@@ -1,11 +1,7 @@
-const BASE_URL = 'https://restcountries.com/v3.1';
+function fetchCountries(e) {
+  const BASE_URL = 'https://restcountries.com/v3.1/name/';
 
-function fetchCountries(name) {
-  return fetch(`${BASE_URL}/name/${name}?fields=name,capital,flags,population,languages`).then(
-    response => {
-      return response.json();
-    },
+  return fetch(`${BASE_URL}${e.target.value}?fields=name,capital,population,flags,languages`).then(
+    response => response.json(),
   );
 }
-
-export default { fetchCountries };
