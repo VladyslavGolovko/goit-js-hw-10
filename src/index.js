@@ -1,7 +1,7 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
-import { fetchCountries } from './js/fetchCountries.js';
+import { API } from './js/fetchCountries.js';
 import { getRefs } from './js/get-refs';
 
 const DEBOUNCE_DELAY = 300;
@@ -12,7 +12,7 @@ refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch() {
   const countryName = refs.inputEl.value.trim();
-  fetchCountries(countryName).then(onSelectionData).catch(onFetchError).finally(onPageReset);
+  API.fetchCountries(countryName).then(onSelectionData).catch(onFetchError).finally(onPageReset);
 }
 
 function onSelectionData(data) {
