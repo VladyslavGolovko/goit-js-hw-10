@@ -2,7 +2,7 @@ import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 import { fetchCountries } from './fetchCountries';
-import { getRefs } from './js/get-refs.js';
+import { getRefs } from './get-refs';
 
 const DEBOUNCE_DELAY = 300;
 
