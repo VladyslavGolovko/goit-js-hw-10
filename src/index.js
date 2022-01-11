@@ -37,7 +37,7 @@ function renderBigCard(data) {
           <p>${country.name.official}</p>
           <p>${country.capital}</p>
           <p>${country.population}</p>
-          <p>${Object.keys(country.languages)}</p>
+          <p>${Object.values(country.languages)}</p>
           <img src="${country.flags.svg}" width="500" height="300"/>
         </li>`,
     )
