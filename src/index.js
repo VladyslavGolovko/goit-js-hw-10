@@ -1,65 +1,60 @@
 import './css/styles.css';
-import API from './js/fetchCountries.js';
-import getRefs from './js/get-refs.js';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
+import { fetchCountries } from './fetchCountries';
+import { getRefs } from './get-refs';
 
 const DEBOUNCE_DELAY = 300;
 
-const refs = getRefs();
+refs = getRefs();
 
-refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+refs.inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
-function onSearch(e) {
-  e.preventDefault();
+function onInput() {
+  const countryName = refs.inputEl.value;
 
-  let searchQuery = e.target.value.trim();
-
-  API.fetchCountries(searchQuery)
-    .then(onSelectionCountries)
-    .catch(onFetchError)
-    .finally(onPageReset);
+  if (!countryName.trim()) {
+    refs.listEl.innerHTML = '';
+    return;
+  } else {
+    fetchCountries(countryName.trim()).then(data => {
+      if (data.length > 10) {
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+        return;
+      } else if (data.length > 2 && data.length < 10) {
+        renderSmallCard(data);
+      } else if (data.length === 1) {
+        renderBigCard(data);
+      }
+    });
+  }
 }
 
-function onSelectionCountries(countries) {
-  if (countries.length > 10) {
-    Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-    return;
-  }
-  if (countries.length <= 10 && countries.length >= 2) {
-    const markUp = countries
-      .map(
-        country => `<li>
-        <p>${country.name.official}</p>
-        <img src="${country.flags.svg}" width="150" height="100"/>
-      </li>`,
-      )
-      .join('');
-    refs.countryList.innerHTML = markUp.trim();
-  }
-  if (countries.length === 1) {
-    const markUp = countries
-      .map(
-        country => `<li>
+function renderBigCard(data) {
+  const markUp = data
+    .map(
+      country => `<li>
           <p>${country.name.official}</p>
           <p>${country.capital}</p>
           <p>${country.population}</p>
           <p>${Object.keys(country.languages)}</p>
           <img src="${country.flags.svg}" width="500" height="300"/>
         </li>`,
-      )
-      .join('');
-    refs.countryInfo.innerHTML = markUp.trim();
-  }
+    )
+    .join('');
+  refs.listEl.innerHTML = markUp;
 }
 
-function onFetchError() {
-  Notiflix.Notify.failure('Oops, there is no country with that name');
-}
-
-function onPageReset() {
-  refs.countryList.innerHTML = '';
-  refs.countryInfo.innerHTML = '';
+function renderSmallCard(data) {
+  const markUp = data
+    .map(
+      country => `<li>
+        <p>${country.name.official}</p>
+        <img src="${country.flags.svg}" width="150" height="100"/>
+      </li>`,
+    )
+    .join('');
+  refs.listEl.innerHTML = markUp;
 }
 
 /*function onSearch(e) {
