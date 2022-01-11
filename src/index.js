@@ -42,7 +42,7 @@ function renderBigCard(data) {
           <h2>${country.name.official}</h2>
           <p>Capital: ${country.capital}</p>
           <p>Population: ${country.population}</p>
-          <p>Languages: ${Object.values(country.languages)}</p>
+          <p>Languages: ${Object.values(country.languages).join(', ')}</p>
           </li>`,
     )
     .join('');
