@@ -1,4 +1,5 @@
 import './css/styles.css';
+import countryListTemp from './templates/country-list.hbs';
 import API from './js/fetchCountries.js';
 import getRefs from './js/get-refs.js';
 import debounce from 'lodash.debounce';
@@ -27,14 +28,26 @@ function onSelectionCountries(countries) {
     return;
   }
   if (countries.length <= 10 && countries.length >= 2) {
-    refs.countryList.insertAdjacentHTML('beforeend', renderCountriesList);
-    return;
+    const markUp = countries.map(countryListTemp).join('');
+    refs.countryListTemp.innerHTML = markUp.trim();
   }
   if (countries.length === 1) {
-    refs.countryInfo.insertAdjacentHTML('beforeend', renderCountriesCard);
-    return;
+    const markUp = data
+      .map(
+        country => `<li>
+          <p>${country.name.official}</p>
+          <p>${country.capital}</p>
+          <p>${country.population}</p>
+          <p>${Object.keys(country.languages)}</p>
+          <img src="${country.flags.svg}" width="500" height="300"/>
+        </li>`,
+      )
+      .join('');
+    refs.listEl.innerHTML = markUp.trim();
   }
 }
+
+function countryCardMarkup() {}
 
 function onFetchError() {
   Notiflix.Notify.failure('Oops, there is no country with that name');
