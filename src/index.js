@@ -42,7 +42,7 @@ function renderBigCard(data) {
         </li>`,
     )
     .join('');
-  refs.countryInfo.innerHTML = markUp;
+  refs.countryList.innerHTML = markUp;
 }
 
 function renderSmallCard(data) {
