@@ -6,6 +6,8 @@ import countryCardTemp from './country-card.hbs';
 import API from './fetchCountries';
 import getRefs from './get-refs';
 
+const DEBOUNCE_DELAY = 300;
+
 const refs = getRefs();
 
 const DEBOUNCE_DELAY = 300;
