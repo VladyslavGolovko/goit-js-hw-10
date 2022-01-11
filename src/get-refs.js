@@ -1,7 +1,9 @@
-export function getRefs() {
+function getRefs() {
   return {
-    searchBox: document.querySelector('#search-box'),
+    searchInput: document.querySelector('#search-box'),
     countryList: document.querySelector('.country-list'),
     countryInfo: document.querySelector('.country-info'),
   };
 }
+
+export default { getRefs };
