@@ -38,11 +38,10 @@ function renderBigCard(data) {
   const markUp = data
     .map(
       country => `<li>
-          <p>${country.name.official}</p>
-          <p>${country.capital}</p>
-          <p>${country.population}</p>
-          <p>${Object.keys(country.languages)}</p>
-          <img src="${country.flags.svg}" width="500" height="300"/>
+          <h2>${country.name.official}<img src="${country.flags.svg}" width="40" height="40"/></h2>
+          <p><b>Capital</b>: ${country.capital}</p>
+          <p><b>Population</b>: ${country.population}</p>
+          <p><b>Languages</b>: ${Object.keys(country.languages)}</p>
           </li>`,
     )
     .join('');
