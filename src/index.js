@@ -1,32 +1,36 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
-import { API } from './js/fetchCountries.js';
-import { getRefs } from './js/get-refs.js';
+import { fetchCountries } from './js/fetchCountries';
+import { getRefs } from './js/get-refs';
 
 const DEBOUNCE_DELAY = 300;
 
 const refs = getRefs();
 
-refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+refs.inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
-function onSearch() {
-  const countryName = refs.inputEl.value.trim();
-  API.fetchCountries(countryName).then(onSelectionData).catch(onFetchError).finally(onPageReset);
-}
+function onInput() {
+  const countryName = refs.inputEl.value;
 
-function onSelectionData(data) {
-  if (data.length > 10) {
-    Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+  if (!countryName.trim()) {
+    refs.listEl.innerHTML = '';
     return;
-  }
-  if (data.length >= 2 && data.length <= 10) {
-    renderSmallCard(data);
-    return;
-  }
-  if (data.length === 1) {
-    renderBigCard(data);
-    return;
+  } else {
+    fetchCountries(countryName.trim()).then(data => {
+      if (data.length > 10) {
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+        return;
+      }
+      if (data.length >= 2 && data.length <= 10) {
+        renderSmallCard(data);
+        return;
+      }
+      if (data.length === 1) {
+        renderBigCard(data);
+        return;
+      }
+    });
   }
 }
 
@@ -42,7 +46,7 @@ function renderBigCard(data) {
         </li>`,
     )
     .join('');
-  refs.countryList.innerHTML = markUp;
+  refs.listEl.innerHTML = markUp;
 }
 
 function renderSmallCard(data) {
@@ -54,13 +58,5 @@ function renderSmallCard(data) {
       </li>`,
     )
     .join('');
-  refs.countryList.innerHTML = markUp;
-}
-
-function onFetchError() {
-  Notiflix.Notify.failure('Oops, there is no country with that name');
-}
-
-function onPageReset() {
-  refs.countryList.innerHTML = '';
+  refs.listEl.innerHTML = markUp;
 }
