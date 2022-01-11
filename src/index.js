@@ -36,8 +36,8 @@ function onSelectionCountries(countries) {
   }
 }
 
-function onFetchError(error) {
-  error.Notiflix.Notify.failure('Oops, there is no country with that name');
+function onFetchError() {
+  Notiflix.Notify.failure('Oops, there is no country with that name');
 }
 
 function onPageReset() {
