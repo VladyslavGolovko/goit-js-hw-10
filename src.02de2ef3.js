@@ -10,8 +10,8 @@ var t=arguments[3],e="Expected a function",n=NaN,r="[object Symbol]",i=/^\s+|\s+
 },{}],"SvwL":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;const e="https://restcountries.com/v3.1";function t(t){return fetch(`${e}/name/${t}?fields=name,capital,flags,population,languages`).then(e=>e.json())}var s={fetchCountries:t};exports.default=s;
 },{}],"hSmY":[function(require,module,exports) {
-"use strict";function e(){return{searchInput:document.querySelector("#search-box"),countryList:document.querySelector(".country-list"),countryInfo:document.querySelector(".country-info")}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.getRefs=e;
+"use strict";function e(){return{searchInput:document.querySelector("#search-box"),countryList:document.querySelector(".country-list"),countryInfo:document.querySelector(".country-info")}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=e;
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./css/styles.css");var e=i(require("notiflix")),t=i(require("lodash.debounce")),n=i(require("./fetchCountries")),r=i(require("./get-refs"));function i(e){return e&&e.__esModule?e:{default:e}}const o=300,u=(0,r.default)();function s(e){e.preventDefault();let t=e.target.value.trim();n.default.fetchCountries(t).then(f).catch(c).finally(a)}function f(t){t.length>10?e.default.Notify.info("Too many matches found. Please enter a more specific name."):t.length<=10&&t.length>=2?u.countryList.insertAdjacentHTML("beforeend",renderCountriesList):1!==t.length||u.countryInfo.insertAdjacentHTML("beforeend",renderCountriesCard)}function c(e){e.Notiflix.Notify("Oops, there is no country with that name")}function a(){u.countryList.innerHTML="",u.countryInfo.innerHTML=""}u.searchInput.addEventListener("input",(0,t.default)(s,300));
 },{"./css/styles.css":"krre","notiflix":"hWOm","lodash.debounce":"PZFh","./fetchCountries":"SvwL","./get-refs":"hSmY"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-10/src.69ca6659.js.map
+//# sourceMappingURL=/goit-js-hw-10/src.02de2ef3.js.map
