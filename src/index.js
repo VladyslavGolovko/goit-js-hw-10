@@ -1,8 +1,6 @@
 import './css/styles.css';
 import Notiflix from 'notiflix';
 import debounce from 'lodash.debounce';
-import countryListTemp from './country-list.hbs';
-import countryCardTemp from './country-card.hbs';
 import API from './fetchCountries';
 import getRefs from './get-refs';
 
@@ -29,23 +27,13 @@ function onSelectionCountries(countries) {
     return;
   }
   if (countries.length <= 10 && countries.length >= 2) {
-    renderCountriesList(countries);
+    refs.countryList.insertAdjacentHTML('beforeend', renderCountriesList);
     return;
   }
   if (countries.length === 1) {
-    renderCountryCard(countries);
+    refs.countryInfo.insertAdjacentHTML('beforeend', renderCountriesCard);
     return;
   }
-}
-
-function renderCountryCard(country) {
-  const markup = countryCardTemp(country);
-  refs.countryInfo.innerHTML = markup;
-}
-
-function renderCountriesList(countries) {
-  const list = countryListTemp(countries);
-  refs.countryList.innerHTML = list;
 }
 
 function onFetchError(error) {
