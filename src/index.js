@@ -1,32 +1,32 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
-import { fetchCountries } from './js/fetchCountries.js';
+import { API } from './js/fetchCountries.js';
 import { getRefs } from './js/get-refs';
 
 const DEBOUNCE_DELAY = 300;
 
 const refs = getRefs();
 
-refs.inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
+refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
-function onInput() {
-  const countryName = refs.inputEl.value;
+function onSearch() {
+  const countryName = refs.inputEl.value.trim();
+  API.fetchCountries(countryName).then(onSelectionData).catch(onFetchError).finally(onPageReset);
+}
 
-  if (!countryName.trim()) {
-    refs.listEl.innerHTML = '';
+function onSelectionData(data) {
+  if (data.length > 10) {
+    Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
     return;
-  } else {
-    fetchCountries(countryName.trim()).then(data => {
-      if (data.length > 10) {
-        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-        return;
-      } else if (data.length > 2 && data.length < 10) {
-        renderSmallCard(data);
-      } else if (data.length === 1) {
-        renderBigCard(data);
-      }
-    });
+  }
+  if (data.length >= 2 && data.length <= 10) {
+    renderSmallCard(data);
+    return;
+  }
+  if (data.length === 1) {
+    renderBigCard(data);
+    return;
   }
 }
 
@@ -55,6 +55,14 @@ function renderSmallCard(data) {
     )
     .join('');
   refs.listEl.innerHTML = markUp;
+}
+
+function onFetchError(error) {
+  Notiflix.Notify.failure('Oops, there is no country with that name');
+}
+
+function onPageReset() {
+  refs.countryList.innerHTML = '';
 }
 
 /*function onSearch(e) {
