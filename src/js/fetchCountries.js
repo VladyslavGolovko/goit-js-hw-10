@@ -10,3 +10,5 @@ function fetchCountries(e) {
     },
   );
 }
+
+export default { fetchCountries };
