@@ -1,13 +1,11 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
-import getRefs from './get-refs';
+import refs from './get-refs';
 import API from './fetchCountries';
 import countryListTpl from './country-list.hbs';
 
 const DEBOUNCE_DELAY = 300;
-
-const refs = getRefs();
 
 refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
