@@ -10,7 +10,7 @@ var t,e=arguments[3];!function(e,i){"function"==typeof t&&t.amd?t([],function(){
 },{}],"hSmY":[function(require,module,exports) {
 "use strict";function e(){return{searchInput:document.querySelector("#search-box"),countryList:document.querySelector(".country-list"),countryInfo:document.querySelector(".country-info")}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=e;
 },{}],"SvwL":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.fetchCountries=t,exports.default=void 0;const e="https://restcountries.com/v3.1";function t(t){return fetch(`${e}/name/${t}`).then(e=>e.json())}var o={fetchCountries:t};exports.default=o;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;const e="https://restcountries.com/v3.1";function t(t){return fetch(`${e}/name/${t}`).then(e=>e.json())}var o={fetchCountries:t};exports.default=o;
 },{}],"pAws":[function(require,module,exports) {
 var define;
 var global = arguments[3];
@@ -20,4 +20,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"handlebars/dist/handlebars.runtime":"pAws"}],"Focm":[function(require,module,exports) {
 "use strict";require("./css/styles.css");var e=r(require("lodash.debounce")),t=r(require("notiflix")),n=r(require("./get-refs")),u=r(require("./fetchCountries")),i=r(require("./country-list.hbs"));function r(e){return e&&e.__esModule?e:{default:e}}const o=300,s=(0,n.default)();function c(){const e=s.searchInput.value;u.default.fetchCountries(e).then(f).catch(l)}function f(e){e.length>10?t.default.Notify.info("Too many matches found. Please enter a more specific name."):e.length>=2&&e.length<=10&&a(e)}function a(e){const t=(0,i.default)(e);s.countryList.innerHTML=t}function l(){h(),t.default.Notify.failure("Oops, there is no country with that name")}function h(){s.countryList.innerHTML=""}s.searchInput.addEventListener("input",(0,e.default)(c,300));
 },{"./css/styles.css":"krre","lodash.debounce":"PZFh","notiflix":"hWOm","./get-refs":"hSmY","./fetchCountries":"SvwL","./country-list.hbs":"r0S9"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-10/src.26e5b256.js.map
+//# sourceMappingURL=/goit-js-hw-10/src.abf738f4.js.map
