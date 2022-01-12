@@ -1,8 +1,8 @@
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-import { fetchCountries } from './fetchCountries';
-import { getRefs } from './get-refs';
+import { fetchCountries } from './js/fetchCountries';
+import { getRefs } from './js/get-refs';
 import renderCountriesTpl from '../src/templates/countries-list';
 import renderCountryTpl from '../src/templates/country-card';
 
