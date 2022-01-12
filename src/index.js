@@ -32,13 +32,13 @@ function onInputEnterValue(e) {
       }
       if (countrys.length >= 2 && countrys.length <= 10) {
         refs.countryInfo.innerHTML = '';
-        Notify.success('You found some countries');
+        Notify.success('You found some countries.');
         cleaningRenderCountrys();
         return renderCountrys(countrys);
       }
       if (countrys.length === 1) {
         refs.countryList.innerHTML = '';
-        Notify.success('You found one country, see detailed information');
+        Notify.success('You found one country.');
         cleaningRenderCountrys();
         return renderCountry(countrys);
       }
