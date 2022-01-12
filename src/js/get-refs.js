@@ -1,4 +1,4 @@
-export default function getRefs() {
+export function getRefs() {
   return {
     countryInfo: document.querySelector('.country-info'),
     searchInput: document.querySelector('#search-box'),

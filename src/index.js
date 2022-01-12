@@ -1,6 +1,6 @@
 import './css/styles.css';
-import API from './js/fetchCountries';
-import getRefs from './js/get-refs';
+import { API } from './js/fetchCountries';
+import { getRefs } from './js/get-refs';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
