@@ -15,7 +15,7 @@ function onSearch(e) {
 
   let searchValue = e.target.value.trim();
 
-  fetchCountries(searchValue).then(toSelectionData).catch(onFetchError).finally(onPageReset);
+  fetchCountries(searchValue).then(toSelectionData);
 }
 
 function toSelectionData() {
