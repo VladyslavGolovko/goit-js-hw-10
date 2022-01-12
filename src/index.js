@@ -1,8 +1,8 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
-import { fetchCountries } from './fetchCountries';
-import { getRefs } from './get-refs';
+import getRefs from './get-refs';
+import API from './fetchCountries';
 import countryListTpl from './country-list.hbs';
 
 const DEBOUNCE_DELAY = 300;
@@ -16,7 +16,7 @@ function onSearch(e) {
 
   let searchValue = e.target.value;
 
-  fetchCountries(searchValue).then(toSelectionData);
+  API.fetchCountries(searchValue).then(toSelectionData);
 }
 
 function toSelectionData(data) {
