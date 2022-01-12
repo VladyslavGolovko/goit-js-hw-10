@@ -13,14 +13,14 @@ refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
 
-  let searchValue = e.target.value.trim();
+  const form = e.currentTarget;
+  const searchQuery = form.elements.query.value;
 
-  API.fetchCountries(searchValue).then(toSelectionData).catch(error).finally(onFormReset);
+  API.fetchCountries(searchQuery).then(toSelectionData).catch(error).finally(onFormReset);
 }
 
 function toSelectionData(data) {
   if (data.length > 10) {
-    onPageReset();
     return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
   } else {
     function CountryCards(data) {
