@@ -13,7 +13,7 @@ refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
 
-  let searchValue = refs.inputEl.value;
+  let searchValue = e.target.value;
 
   fetchCountries(searchValue).then(toSelectionData);
 }
