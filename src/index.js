@@ -15,7 +15,7 @@ function onSearch(e) {
 
   let searchValue = e.target.value.trim();
 
-  fetchCountries(searchValue).then(toSelectionData);
+  fetchCountries(searchValue).then(toSelectionData).catch(onFetchError);
 }
 
 function toSelectionData(data) {
@@ -58,4 +58,8 @@ function renderSmallCard(data) {
     )
     .join('');
   refs.listEl.innerHTML = markUp;
+}
+
+function onFetchError() {
+  Notiflix.Notify.failure('Oops, there is no country with that name');
 }
