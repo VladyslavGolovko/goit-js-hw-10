@@ -19,8 +19,10 @@ function onSearch(e) {
 }
 
 function toSelectionData(data) {
-  if (data.length > 10) {
+  if (data === '') {
     onPageReset();
+  }
+  if (data.length > 10) {
     return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
   } else {
     function CountryCards(data) {
