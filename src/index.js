@@ -13,13 +13,14 @@ refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
 
-  const form = e.currentTarget;
-  const searchQuery = form.elements.searchbox.value;
-  API.fetchCountries(searchQuery).then(toSelectionData).catch(error).finally(onFormReset);
+  let searchValue = e.target.value.trim();
+
+  API.fetchCountries(searchValue).then(toSelectionData).catch(error);
 }
 
 function toSelectionData(data) {
   if (data.length > 10) {
+    onPageReset();
     return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
   } else {
     function CountryCards(data) {
@@ -50,9 +51,10 @@ function toSelectionData(data) {
   }
 }
 function error() {
+  onPageReset();
   Notiflix.Notify.failure(`Oops, there is no country with that name`);
 }
 
-function onFormReset() {
-  form.reset();
+function onPageReset() {
+  refs.countryList.innerHTML = '';
 }
