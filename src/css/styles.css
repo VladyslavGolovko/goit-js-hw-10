@@ -50,7 +50,7 @@ body {
   font-size: 20px;
   margin-left: 15px;
   font-weight: normal;
-  color: #fafafa;
+  color: #aaaaaa;
 }
 
 .flag-list {
@@ -71,6 +71,6 @@ body {
 }
 
 .name-official {
-  color: #fafafa;
+  color: #aaaaaa;
   font-weight: bold;
 }
