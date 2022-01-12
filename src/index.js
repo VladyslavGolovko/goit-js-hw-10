@@ -49,9 +49,9 @@ function renderBigCard(data) {
     .map(
       country => `<li>
           <p>${country.name.official}</p>
-          <p>${country.capital}</p>
-          <p>${country.population}</p>
-          <p>${Object.values(country.languages.join(', '))}</p>
+          <p>Capital: ${country.capital}</p>
+          <p>Population: ${country.population}</p>
+          <p>Language: ${Object.values(country.languages.join(', '))}</p>
           <img src="${country.flags.svg}" width="500" height="300"/>
         </li>`,
     )
