@@ -34,12 +34,3 @@ function renderSmallCard(data) {
   const markUp = countryListTpl(data);
   refs.countryList.innerHTML = markUp;
 }
-
-function onFetchError() {
-  onPageReset();
-  Notiflix.Notify.failure(`Oops, there is no country with that name`);
-}
-
-function onPageReset() {
-  refs.countryList.innerHTML = '';
-}
