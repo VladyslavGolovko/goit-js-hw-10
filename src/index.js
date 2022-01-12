@@ -2,41 +2,59 @@ import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 import getRefs from './get-refs';
-import API from './fetchCountries';
-import countryListTpl from './country-list.hbs';
+import { fetchCountries } from './fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
 
 const refs = getRefs();
 
-refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+refs.searchInput.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
-function onSearch() {
-  const countryName = refs.searchInput.value;
-  API.fetchCountries(countryName).then(toSelectionData).catch(onFetchError);
-}
+function onInput() {
+  const countryName = refs.inputEl.value;
 
-function toSelectionData(data) {
-  if (data.length > 10) {
-    Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+  if (!countryName.trim()) {
+    refs.listEl.innerHTML = '';
     return;
-  }
-  if (data.length >= 2 && data.length <= 10) {
-    renderSmallCard(data);
-    return;
+  } else {
+    fetchCountries(countryName.trim()).then(data => {
+      if (data.length > 10) {
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+        return;
+      }
+      if (data.length > 2 && data.length < 10) {
+        renderSmallCard(data);
+      }
+      if (data.length === 1) {
+        renderBigCard(data);
+      }
+    });
   }
 }
 
 function renderSmallCard(data) {
-  const markUp = countryListTpl(data);
-  refs.countryList.innerHTML = markUp;
+  const markUp = data
+    .map(
+      country => `<li>
+        <p>${country.name.official}</p>
+        <img src="${country.flags.svg}" width="150" height="100"/>
+      </li>`,
+    )
+    .join('');
+  refs.listEl.innerHTML = markUp;
 }
 
-function onFetchError() {
-  onPageReset();
-  Notiflix.Notify.failure('Oops, there is no country with that name');
-}
-
-function onPageReset() {
-  refs.countryList.innerHTML = '';
+function renderBigCard(data) {
+  const markUp = data
+    .map(
+      country => `<li>
+          <p>${country.name.official}</p>
+          <p>${country.capital}</p>
+          <p>${country.population}</p>
+          <p>${Object.values(country.languages.join(', '))}</p>
+          <img src="${country.flags.svg}" width="500" height="300"/>
+        </li>`,
+    )
+    .join('');
+  refs.listEl.innerHTML = markUp;
 }

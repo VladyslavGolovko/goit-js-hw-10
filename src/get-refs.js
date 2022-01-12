@@ -1,7 +1,7 @@
 export default function getRefs() {
   return {
-    searchInput: document.querySelector('#search-box'),
-    countryList: document.querySelector('.country-list'),
-    countryInfo: document.querySelector('.country-info'),
+    inputEl: document.querySelector('#search-input'),
+    listEl: document.querySelector('.country-list'),
+    infoEl: document.querySelector('.country-info'),
   };
 }
