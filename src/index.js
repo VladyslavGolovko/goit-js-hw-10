@@ -8,7 +8,7 @@ const DEBOUNCE_DELAY = 300;
 
 const refs = getRefs();
 
-refs.searchInput.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
+refs.inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput() {
   const countryName = refs.inputEl.value;
