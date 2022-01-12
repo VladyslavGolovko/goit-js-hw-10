@@ -28,10 +28,6 @@ function toSelectionData(data) {
     renderSmallCard(data);
     return;
   }
-  if (data.length === 1) {
-    renderBigCard(data);
-    return;
-  }
 }
 
 function renderSmallCard(data) {
