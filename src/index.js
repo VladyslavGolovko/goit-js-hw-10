@@ -15,7 +15,7 @@ function onSearch(e) {
 
   let searchValue = e.target.value.trim();
 
-  API.fetchCountries(searchValue).then(toSelectionData).catch(error);
+  API.fetchCountries(searchValue).then(toSelectionData).catch(error).finally(onFormReset);
 }
 
 function toSelectionData(data) {
@@ -51,10 +51,9 @@ function toSelectionData(data) {
   }
 }
 function error() {
-  onPageReset();
   Notiflix.Notify.failure(`Oops, there is no country with that name`);
 }
 
-function onPageReset() {
-  refs.countryList.innerHTML = '';
+function onFormReset() {
+  form.reset();
 }
