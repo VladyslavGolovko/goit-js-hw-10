@@ -14,8 +14,7 @@ function onSearch(e) {
   e.preventDefault();
 
   const form = e.currentTarget;
-  const searchQuery = form.elements.query.value;
-
+  const searchQuery = form.elements.searchbox.value;
   API.fetchCountries(searchQuery).then(toSelectionData).catch(error).finally(onFormReset);
 }
 
