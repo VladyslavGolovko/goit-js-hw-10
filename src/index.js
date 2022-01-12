@@ -14,7 +14,7 @@ refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
 
-  let searchValue = e.target.value;
+  let searchValue = e.target.value.trim();
 
   API.fetchCountries(searchValue).then(toSelectionData);
 }
