@@ -1,13 +1,15 @@
 import './css/styles.css';
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
-import refs from './get-refs';
+import getRefs from './get-refs';
 import API from './fetchCountries';
 import countryListTpl from './country-list.hbs';
 
 const DEBOUNCE_DELAY = 300;
 
-refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+const refs = getRefs();
+
+refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
   e.preventDefault();
@@ -30,5 +32,5 @@ function toSelectionData(data) {
 
 function renderSmallCard(data) {
   const markUp = countryListTpl(data);
-  refs.listEl.innerHTML = markUp;
+  refs.countryList.innerHTML = markUp;
 }
