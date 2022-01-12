@@ -11,12 +11,9 @@ const refs = getRefs();
 
 refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
-function onSearch(e) {
-  e.preventDefault();
-
-  let searchValue = e.target.value.trim();
-
-  API.fetchCountries(searchValue).then(toSelectionData).catch(onFetchError);
+function onSearch() {
+  const countryName = refs.searchInput.value;
+  API.fetchCountries(countryName).then(toSelectionData).catch(onFetchError);
 }
 
 function toSelectionData(data) {
@@ -33,4 +30,13 @@ function toSelectionData(data) {
 function renderSmallCard(data) {
   const markUp = countryListTpl(data);
   refs.countryList.innerHTML = markUp;
+}
+
+function onFetchError() {
+  onPageReset();
+  Notiflix.Notify.failure('Oops, there is no country with that name');
+}
+
+function onPageReset() {
+  refs.countryList.innerHTML = '';
 }
