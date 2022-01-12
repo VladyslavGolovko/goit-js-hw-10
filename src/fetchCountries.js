@@ -1,6 +1,6 @@
 import Notiflix from 'notiflix';
 
-export function fetchCountries(countryName) {
+function fetchCountries(countryName) {
   const BASE_URL = 'https://restcountries.com/v3.1/name/';
   return fetch(`${BASE_URL}${countryName}?fields=name,capital,population,flags,languages`).then(
     response => {
@@ -11,3 +11,5 @@ export function fetchCountries(countryName) {
     },
   );
 }
+
+export { fetchCountries };
